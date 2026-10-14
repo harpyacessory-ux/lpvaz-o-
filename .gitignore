@@ -2,3 +2,6 @@
 vazao-rva-agro _1_.html
 *.png
 .vercel
+
+.vercel
+.env*
