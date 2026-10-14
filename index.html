@@ -180,62 +180,47 @@ p{text-wrap:pretty}
 .catalogue-text strong{display:block;font-size:19px;color:var(--blue-700);letter-spacing:-.015em}
 .catalogue-text p{margin-top:4px;font-size:14.5px;color:var(--muted)}
 
+/* ---------- Área "fale com a gente" (banner + contato) ---------- */
+.talk{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#f5f8fd 0%,#edf3fb 100%)}
+.talk::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,transparent 0 5%,rgba(255,255,255,.8) 5% 12%,transparent 12% 68%,rgba(255,255,255,.65) 68% 76%,transparent 76%),linear-gradient(115deg,transparent 0 24%,rgba(214,228,245,.55) 24% 29%,transparent 29% 86%,rgba(214,228,245,.5) 86% 92%,transparent 92%)}
+.talk::after{content:"";position:absolute;right:0;bottom:0;z-index:-1;width:48%;height:62%;background:linear-gradient(rgba(36,104,204,.07) 1px,transparent 1px) 0 0/34px 34px,linear-gradient(90deg,rgba(36,104,204,.07) 1px,transparent 1px) 0 0/34px 34px;-webkit-mask-image:radial-gradient(80% 90% at 75% 70%,#000 20%,transparent 75%);mask-image:radial-gradient(80% 90% at 75% 70%,#000 20%,transparent 75%)}
+.talk .wrap{width:min(1620px,100% - clamp(48px,8vw,200px))}
+
 /* ---------- Banner especialista ---------- */
-.cta-section{padding:clamp(48px,5vw,72px) 0 0}
-.cta{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 350px;min-height:280px;border-radius:var(--r-xl);overflow:hidden;background:linear-gradient(115deg,#072a59 0%,#0a3d82 52%,#0c4797 100%);isolation:isolate;box-shadow:var(--sh-lg)}
-.cta-photo{position:absolute;top:0;bottom:0;left:44%;right:280px;z-index:-1;background:var(--hero-img) 80% 64%/auto 175% no-repeat;clip-path:polygon(70px 0,100% 0,100% 100%,0 100%)}
-.cta-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,61,130,.75) 0%,rgba(10,61,130,.15) 38%,rgba(10,61,130,0) 70%)}
-.cta-main{position:relative;padding:44px clamp(28px,4vw,52px);max-width:560px}
-.cta .eyebrow{color:#fff}
-.cta .eyebrow::before{background:var(--red-600);width:36px}
+.cta-section{--list:clamp(340px,26vw,460px);padding:clamp(48px,5vw,64px) 0 0}
+.cta{position:relative;display:grid;grid-template-columns:minmax(0,1fr) var(--list);min-height:clamp(320px,23vw,390px);border-radius:24px;overflow:hidden;background:linear-gradient(120deg,#082b5e 0%,#0a3478 60%,#0b3f8a 100%);isolation:isolate;box-shadow:0 40px 80px -40px rgba(6,27,56,.55)}
+.cta-photo{position:absolute;top:0;bottom:0;left:46%;right:calc(var(--list) - 110px);z-index:-1;background:var(--hero-img) 76% 62%/auto 190% no-repeat;clip-path:polygon(110px 0,100% 0,100% 100%,0 100%)}
+.cta-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,43,94,.5) 0%,rgba(8,43,94,0) 30%)}
+.cta-main{position:relative;align-self:center;width:min(100%,63%);padding:clamp(40px,4vw,60px) 0 clamp(40px,4vw,60px) clamp(28px,3.6vw,60px)}
+.cta-main::after{content:"";position:absolute;right:-60px;bottom:-150px;z-index:-1;width:300px;height:300px;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 30px,rgba(255,255,255,.07) 30px 31px);pointer-events:none}
+.cta .eyebrow{gap:16px;font-size:clamp(12px,.9vw,15px);color:#fff}
+.cta .eyebrow::before{background:var(--red-600);width:50px}
 .cta .eyebrow::after{display:none}
-.cta h2{margin:14px 0 12px;color:#fff;font-size:clamp(26px,2.6vw,34px);line-height:1.15}
-.cta p{color:#cfe0f6;font-size:15.5px;line-height:1.65;max-width:440px}
-.cta .btn{margin-top:26px}
-.cta-list{grid-column:2;display:flex;flex-direction:column;justify-content:center;gap:22px;margin:0;padding:32px 26px 32px 84px;list-style:none;background:#f2f6fb;clip-path:polygon(70px 0,100% 0,100% 100%,0 100%)}
-.cta-list li{display:flex;align-items:center;gap:12px}
-.cta-list .ico{width:26px;height:26px;color:var(--blue-500);stroke-width:1.5}
-.cta-list strong{display:block;font-size:15px;line-height:1.3;color:var(--blue-700)}
-.cta-list span{display:block;font-size:13px;line-height:1.4;color:var(--muted)}
+.cta h2{margin:16px 0 14px;color:#fff;font-size:clamp(30px,2.3vw,44px);line-height:1.08;letter-spacing:-.035em}
+.cta p{color:#d6e4f7;font-size:clamp(16px,1.15vw,19px);line-height:1.55;max-width:560px}
+.cta .btn{margin-top:clamp(22px,2vw,30px);min-height:clamp(52px,3.4vw,62px);padding:0 30px;border-radius:12px;font-size:clamp(15px,1.05vw,18px)}
+.cta-list{grid-column:2;display:flex;flex-direction:column;justify-content:center;margin:0;padding:20px clamp(24px,2.2vw,40px) 20px 100px;list-style:none;background:linear-gradient(180deg,#f7faff,#eef3fa);clip-path:polygon(110px 0,100% 0,100% 100%,0 100%)}
+.cta-list li{display:flex;align-items:center;gap:18px;padding:clamp(16px,1.4vw,24px) 0;border-bottom:1px solid #d9e3ef}
+.cta-list li:last-child{border-bottom:0}
+.cta-list .ico{width:clamp(32px,2.4vw,42px);height:clamp(32px,2.4vw,42px);color:var(--blue-600);stroke-width:1.5}
+.cta-list strong{display:block;font-size:clamp(16px,1.1vw,20px);line-height:1.25;letter-spacing:-.015em;color:var(--blue-700)}
+.cta-list span{display:block;font-size:clamp(14px,1vw,17px);line-height:1.35;color:var(--muted)}
 
 /* ---------- Contato ---------- */
-.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);align-items:start}
-.contact-copy{position:sticky;top:120px}
-.contact-copy h2{margin:16px 0 16px;font-size:clamp(32px,3.6vw,46px);line-height:1.1;color:var(--blue-700)}
-.contact-copy>p{font-size:17px;color:var(--muted);max-width:400px}
-.steps{position:relative;display:grid;gap:22px;margin:36px 0 36px;padding:0;list-style:none}
-.steps::before{content:"";position:absolute;left:21px;top:22px;bottom:22px;width:2px;background:linear-gradient(var(--blue-100),var(--blue-200),var(--blue-100))}
-.steps li{position:relative;display:flex;align-items:center;gap:18px;font-size:15.5px;font-weight:500;color:var(--ink)}
-.steps b{display:grid;place-items:center;width:44px;height:44px;flex:none;border-radius:50%;background:#fff;border:2px solid var(--blue-200);color:var(--blue-700);font-size:13px;font-weight:800}
-.text-link{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--blue-700);border-bottom:2px solid var(--blue-200);padding-bottom:3px;transition:border-color .2s}
-.text-link:hover{border-color:var(--blue-700)}
-.text-link .ico{width:16px;height:16px}
-.form-slot{min-height:760px}
-.form-card{padding:clamp(24px,3.4vw,40px);border-radius:var(--r-xl);background:#fff;border:1px solid var(--line);box-shadow:var(--sh-lg)}
-.form-head{display:flex;align-items:flex-start;gap:16px;padding-bottom:24px;margin-bottom:26px;border-bottom:1px solid var(--line)}
-.form-head .badge{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:14px;background:var(--blue-50);color:var(--blue-600)}
-.form-head h3{font-size:22px;color:var(--blue-700);margin-bottom:4px}
-.form-head p{font-size:14.5px;color:var(--muted)}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
-.field{display:flex;flex-direction:column;gap:8px}
-.field.full{grid-column:1/-1}
-.field label{font-size:13.5px;font-weight:700;color:var(--ink)}
-.field label i{font-style:normal;color:var(--red-600)}
-.input{width:100%;min-height:50px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:12px;background:#f8fafc;font-size:15px;color:var(--ink);transition:border-color .2s,box-shadow .2s,background-color .2s;appearance:none;-webkit-appearance:none}
-.input::placeholder{color:#94a3b5}
-.input:hover{border-color:#b9c8d9}
-.input:focus{outline:0;border-color:var(--blue-500);background:#fff;box-shadow:0 0 0 4px rgba(36,104,204,.14)}
-select.input{padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b3f8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px}
-select.input:invalid{color:#94a3b5}
-textarea.input{min-height:120px;resize:vertical;line-height:1.55}
-.form-card .btn{margin-top:22px}
-.form-note{display:flex;gap:8px;margin-top:14px;font-size:12.5px;line-height:1.55;color:var(--muted)}
-.form-note .ico{width:16px;height:16px;margin-top:2px;color:var(--green-600)}
-.result{margin-top:22px;padding:20px;border-radius:14px;background:var(--surface);border:1px dashed var(--line-strong)}
-.result label{display:block;margin-bottom:8px;font-size:13.5px;font-weight:700;color:var(--ink)}
-.result textarea{min-height:200px;background:#fff}
-.result .btn{margin-top:14px}
-.copy-status{display:block;margin-top:10px;font-size:13px;color:var(--green-600);font-weight:600}
+.contact-section{padding:clamp(56px,6vw,80px) 0 clamp(64px,7vw,96px)}
+.contact{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,600px) minmax(0,.7fr);gap:clamp(32px,4vw,64px);align-items:center}
+.contact-copy .eyebrow{font-size:clamp(12px,.9vw,15px)}
+.contact-copy h2{margin:18px 0 18px;font-size:clamp(36px,3.2vw,58px);line-height:1.02;letter-spacing:-.045em;color:var(--navy-800)}
+.contact-copy h2 em{font-style:normal;color:var(--blue-600)}
+.contact-copy>p{font-size:clamp(16px,1.2vw,20px);line-height:1.5;color:var(--muted);max-width:460px}
+.steps-card{padding:clamp(20px,2vw,30px) clamp(24px,2.8vw,48px) clamp(24px,2.2vw,34px);border-radius:20px;background:#fff;border:1px solid #dfe8f3;box-shadow:0 30px 60px -36px rgba(10,43,87,.4)}
+.steps{display:grid;margin:0;padding:0;list-style:none}
+.steps li{display:flex;align-items:center;gap:clamp(20px,2.4vw,40px);padding:clamp(14px,1.2vw,20px) 0;border-bottom:1px solid var(--line);font-size:clamp(15.5px,1.1vw,18px);font-weight:500;color:var(--ink)}
+.steps b{display:grid;place-items:center;width:clamp(48px,3.6vw,58px);height:clamp(48px,3.6vw,58px);flex:none;border-radius:50%;background:#fff;border:1.5px solid var(--blue-200);color:var(--blue-700);font-size:clamp(15px,1.1vw,18px);font-weight:800;box-shadow:0 8px 18px -10px rgba(10,43,87,.35)}
+.text-link{display:inline-flex;align-items:center;gap:14px;margin-top:clamp(18px,1.6vw,26px);padding-bottom:4px;border-bottom:2px solid var(--blue-600);font-size:clamp(15px,1.1vw,18px);font-weight:700;color:var(--blue-600);transition:color .2s,border-color .2s}
+.text-link:hover{color:var(--blue-700);border-color:var(--blue-700)}
+.text-link .ico{width:18px;height:18px;stroke-width:2.2}
+.contact-art{display:block;width:calc(100% + clamp(24px,5vw,120px));max-width:none;height:auto}
 
 /* ---------- Rodapé ---------- */
 .site-footer{background:var(--navy-900);color:#a9bbd3;font-size:14px}
@@ -273,8 +258,12 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
   .track{--per:3}
   .line{grid-template-columns:240px minmax(0,1fr)}
   .cta{grid-template-columns:1fr}
-  .cta-photo{left:52%;right:0}
-  .cta-list{grid-column:1;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:16px 32px;padding:24px clamp(28px,4vw,52px);clip-path:none}
+  .cta-photo{left:50%;right:0;bottom:auto;height:clamp(300px,34vw,360px)}
+  .cta-main{width:55%}
+  .cta-list{grid-column:1;flex-direction:row;flex-wrap:wrap;gap:12px 28px;padding:22px clamp(28px,3.6vw,60px);clip-path:none}
+  .cta-list li{flex:1 1 220px;padding:0;border:0}
+  .contact{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+  .contact-art{display:none}
   .footer-top{grid-template-columns:1fr 1fr}
   .footer-brand{grid-column:1/-1}
 }
@@ -291,7 +280,6 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
   .line-info p{max-width:560px}
   .line-ctrl{margin-top:20px;max-width:520px}
   .contact{grid-template-columns:1fr}
-  .contact-copy{position:static}
 }
 @media (max-width:640px){
   html{scroll-padding-top:76px}
@@ -338,13 +326,18 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
   .model h4{font-size:16.5px}
   .catalogue{flex-direction:column;align-items:flex-start;padding:24px}
   .catalogue .btn{width:100%}
-  .cta-section{padding-top:56px}
+  .talk .wrap{width:calc(100% - 32px)}
+  .talk::after{display:none}
+  .cta-section{padding-top:48px}
   .cta{border-radius:20px}
-  .cta-photo{position:relative;grid-row:2;left:auto;right:auto;height:190px;clip-path:none;background-size:cover;background-position:80% 70%}
-  .cta-photo::after{background:linear-gradient(180deg,rgba(10,61,130,.6) 0%,rgba(10,61,130,0) 50%)}
-  .cta-main{padding:32px 24px 28px}
+  .cta-photo{position:relative;grid-row:2;left:auto;right:auto;height:200px;clip-path:none;background-size:cover;background-position:80% 70%}
+  .cta-photo::after{background:linear-gradient(180deg,rgba(8,43,94,.6) 0%,rgba(8,43,94,0) 50%)}
+  .cta-main{width:auto;padding:32px 24px 28px}
   .cta .btn{width:100%}
-  .cta-list{grid-row:3;flex-direction:column;padding:24px}
+  .cta-list{grid-row:3;flex-direction:column;gap:0;padding:8px 24px}
+  .cta-list li{flex:none;padding:16px 0;border-bottom:1px solid #d9e3ef}
+  .steps-card{padding:12px 20px 22px}
+  .steps li{gap:16px}
   .form-head{gap:12px}
   .form-head .badge{display:none}
   .fields{grid-template-columns:1fr}
@@ -379,6 +372,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
   <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.8A8 8 0 1 1 21 12Z"/><path d="M8.5 11h7M8.5 14.5h4.5"/></symbol>
   <symbol id="i-weight" viewBox="0 0 24 24"><path d="M7.5 9h9l2.5 11H5L7.5 9Z"/><path d="M9.5 9a2.5 2.5 0 1 1 5 0"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M9 8h6M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-bars" viewBox="0 0 24 24"><path d="M3 20h18M6 20v-6h3v6M10.5 20V6h3v14M15 20v-9h3v9"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
 </svg>
 
@@ -1010,6 +1005,7 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
     </div>
   </section>
 
+  <div class="talk">
   <section class="cta-section" aria-labelledby="cta-title">
     <div class="wrap">
       <div class="cta reveal">
@@ -1021,20 +1017,22 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
           <a class="btn" href="#contato">Fale com um especialista <svg class="ico"><use href="#i-arrow"/></svg></a>
         </div>
         <ul class="cta-list">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-badge"/></svg><div><strong>Atendimento</strong><span>técnico especializado</span></div></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-clip"/></svg><div><strong>Cotações personalizadas</strong><span>para o seu projeto</span></div></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-factory"/></svg><div><strong>Soluções sob medida</strong><span>para a sua necessidade</span></div></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-gear"/></svg><div><strong>Atendimento</strong><span>técnico especializado</span></div></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><div><strong>Cotações personalizadas</strong><span>para o seu projeto</span></div></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-bars"/></svg><div><strong>Soluções sob medida</strong><span>para a sua necessidade</span></div></li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="section" id="contato" aria-labelledby="contact-title">
+  <section class="contact-section" id="contato" aria-labelledby="contact-title">
     <div class="wrap contact">
       <div class="contact-copy reveal">
         <span class="eyebrow left">Vamos conversar</span>
-        <h2 id="contact-title">Seu projeto começa com uma boa especificação.</h2>
+        <h2 id="contact-title">Seu projeto começa com uma <em>boa especificação.</em></h2>
         <p>Reúna as informações da aplicação para conversar com a equipe técnica da Vazão.</p>
+      </div>
+      <div class="steps-card reveal d1">
         <ol class="steps">
           <li><b>01</b>Selecione a linha de interesse.</li>
           <li><b>02</b>Informe o equipamento e a aplicação.</li>
@@ -1042,11 +1040,15 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
         </ol>
         <a class="text-link" href="https://vazao.com.br/" target="_blank" rel="noopener">Acessar os canais oficiais da Vazão <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
       </div>
-
-      <!-- Espaço reservado para o formulário -->
-      <div class="form-slot" id="form-slot"></div>
+      <svg class="contact-art" viewBox="0 0 480 440" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <g stroke="#2468cc" stroke-width=".7" opacity=".35"><path d="M208.2 139.7L254 166.1M166.3 163.8L212.2 190.2M124.5 187.9L170.3 214.4M82.7 212.1L128.5 238.5M269.9 175.3L315.7 201.7M228.1 199.4L273.9 225.9M186.3 223.6L232.1 250M144.4 247.8L190.2 274.2M331.7 210.9L377.5 237.4M289.8 235.1L335.6 261.5M248 259.3L293.8 285.7M206.2 283.4L252 309.8M226.1 115.5L226.1 51.1M407.4 220.1L407.4 155.7M234.1 320.2L234.1 255.8M52.8 215.5L52.8 151.1M316.7 167.8L316.7 103.4M143.4 267.9L143.4 203.5M139.5 165.5L139.5 101.1M320.7 270.2L320.7 205.8M226.1 83.3L407.4 187.9M407.4 187.9L234.1 288M234.1 288L52.8 183.3M52.8 183.3L226.1 83.3M208.2 167.3L238 184.5M208.2 160.3L238 177.6M208.2 167.3L208.2 160.3M238 184.5L190.2 212.1M238 177.6L190.2 205.2M238 184.5L238 177.6M190.2 212.1L160.4 194.9M190.2 205.2L160.4 187.9M190.2 212.1L190.2 205.2M160.4 194.9L208.2 167.3M160.4 187.9L208.2 160.3M160.4 194.9L160.4 187.9"/></g>
+          <g stroke="#1550aa" stroke-width="1.2" opacity=".7"><path d="M250 150L295.8 176.4M250 115.5L295.8 141.9M250 150L250 115.5M295.8 176.4L86.7 297.2M295.8 141.9L86.7 262.7M295.8 176.4L295.8 141.9M86.7 297.2L40.9 270.8M86.7 262.7L40.9 236.3M86.7 297.2L86.7 262.7M40.9 270.8L250 150M40.9 236.3L250 115.5M40.9 270.8L40.9 236.3M311.7 185.6L357.6 212.1M311.7 151.1L357.6 177.6M311.7 185.6L311.7 151.1M357.6 212.1L148.4 332.8M357.6 177.6L148.4 298.3M357.6 212.1L357.6 177.6M148.4 332.8L102.6 306.4M148.4 298.3L102.6 271.9M148.4 332.8L148.4 298.3M102.6 306.4L311.7 185.6M102.6 271.9L311.7 151.1M102.6 306.4L102.6 271.9M373.5 221.3L419.3 247.7M373.5 186.8L419.3 213.2M373.5 221.3L373.5 186.8M419.3 247.7L210.2 368.5M419.3 213.2L210.2 334M419.3 247.7L419.3 213.2M210.2 368.5L164.4 342M210.2 334L164.4 307.5M210.2 368.5L210.2 334M164.4 342L373.5 221.3M164.4 307.5L373.5 186.8M164.4 342L164.4 307.5M226.1 122.4L407.4 227M226.1 115.5L407.4 220.1M226.1 122.4L226.1 115.5M407.4 227L234.1 327.1M407.4 220.1L234.1 320.2M407.4 227L407.4 220.1M234.1 327.1L52.8 222.4M234.1 320.2L52.8 215.5M234.1 327.1L234.1 320.2M52.8 222.4L226.1 122.4M52.8 215.5L226.1 115.5M52.8 222.4L52.8 215.5M226.1 51.1L407.4 155.7M407.4 155.7L234.1 255.8M234.1 255.8L52.8 151.1M52.8 151.1L226.1 51.1M240 183.3L289.8 212.1M240 144.2L289.8 173M240 183.3L240 144.2M289.8 212.1L256 231.6M289.8 173L256 192.5M289.8 212.1L289.8 173M256 231.6L206.2 202.9M256 192.5L206.2 163.8M256 231.6L256 192.5M206.2 202.9L240 183.3M206.2 163.8L240 144.2M206.2 202.9L206.2 163.8M202.2 205.2L252 233.9M202.2 159.2L252 187.9M202.2 205.2L202.2 159.2M252 233.9L196.2 266.1M252 187.9L196.2 220.1M252 233.9L252 187.9M196.2 266.1L146.4 237.4M196.2 220.1L146.4 191.4M196.2 266.1L196.2 220.1M146.4 237.4L202.2 205.2M146.4 191.4L202.2 159.2M146.4 237.4L146.4 191.4"/></g>
+          <g stroke="#1550aa" stroke-width="2.2" opacity=".55"><path d="M264.9 170.1L294.8 152.9L294.8 83.9L344.6 20.6L394.4 -8.1L414.3 26.4L434.2 95.4"/><path d="M278.9 178.2L308.8 160.9L308.8 91.9L358.6 28.7L408.4 -0.1L428.3 34.4L448.2 103.4"/></g>
+          <g stroke="#2468cc" stroke-width=".8" opacity=".55"><path d="M283.9 123.6L465.1 228.2M289.8 120.1L277.9 127M471.1 224.7L459.1 231.6M461.1 292.6L287.8 392.6M455.2 289.1L467.1 296M281.9 389.2L293.8 396.1M287.8 392.6L287.8 220.1"/><circle cx="287.8" cy="212.1" r="6"/></g>
+        </svg>
     </div>
   </section>
+  </div>
 </main>
 
 <footer class="site-footer">
