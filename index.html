@@ -115,60 +115,62 @@ p{text-wrap:pretty}
 .benefit p{font-size:16.5px;line-height:1.65;color:var(--muted)}
 
 /* ---------- Produtos: uma linha por carrossel ---------- */
-.products-section{background:linear-gradient(180deg,var(--surface) 0%,#f8fafd 100%);border-top:1px solid var(--line)}
-.line-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:-16px auto clamp(36px,4vw,48px)}
-.line-nav a{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line-strong);background:#fff;font-size:14px;font-weight:700;color:var(--blue-700);transition:background-color .2s,border-color .2s,color .2s}
-.line-nav a span{font-size:12px;font-weight:700;color:var(--muted);transition:color .2s}
-.line-nav a:hover{background:var(--blue-700);border-color:var(--blue-700);color:#fff}
-.line-nav a:hover span{color:#c9daf1}
+.products-section{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#f3f7fd 0%,#eef4fb 50%,#f4f8fd 100%);border-top:1px solid var(--line)}
+.prod-bg{position:absolute;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none}
+.products-section>.wrap{width:min(1640px,100% - 64px)}
+.products-section .section-head{max-width:760px}
+.line-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:-14px auto clamp(44px,5vw,64px)}
+.line-nav a{position:relative;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 14px 0 20px;border-radius:10px;border:1px solid var(--blue-200);background:#fff;font-size:14px;font-weight:700;color:var(--blue-700);box-shadow:var(--sh-sm);transition:background-color .2s,border-color .2s,color .2s,box-shadow .2s}
+.line-nav a span{display:grid;place-items:center;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:var(--blue-50);font-size:12px;font-weight:800;color:var(--blue-700);transition:background-color .2s,color .2s}
+.line-nav a::after{content:"";position:absolute;left:50%;bottom:-6px;width:56px;height:3px;border-radius:3px;background:var(--red-600);transform:translateX(-50%) scaleX(0);transition:transform .25s var(--ease)}
+.line-nav a:hover{border-color:var(--blue-500)}
+.line-nav a.active{background:linear-gradient(180deg,#1550aa,#0b3f8a);border-color:#0b3f8a;color:#fff;box-shadow:0 12px 24px -12px rgba(11,63,138,.6)}
+.line-nav a.active span{background:var(--red-600);color:#fff}
+.line-nav a.active::after{transform:translateX(-50%) scaleX(1)}
 
-.line{scroll-margin-top:96px;padding:28px;border:1px solid var(--line);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm)}
-.line+.line{margin-top:28px}
-.line-head{display:flex;align-items:center;gap:22px;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid var(--line)}
-.line-thumb{width:132px;height:88px;flex:none;display:grid;place-items:center;padding:8px;border-radius:14px;background:radial-gradient(120% 95% at 50% 30%,#fff 0%,#f3f7fb 60%,#e6eef7 100%);border:1px solid var(--line)}
-.line-thumb img{width:100%;height:100%;object-fit:contain}
-.line-info{flex:1;min-width:0}
-.line-meta{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px}
-.line-num{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--red-600)}
-.tag{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-600)}
-.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.line h3{margin:6px 0 4px;font-size:clamp(21px,2vw,26px);line-height:1.2;color:var(--blue-700)}
-.line-info p{font-size:14.5px;line-height:1.6;color:var(--muted);max-width:640px}
-.line-side{display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex:none}
-.line-count{font-size:13px;font-weight:600;color:var(--muted)}
-.line-count b{color:var(--blue-700)}
-.ctrls{display:flex;gap:8px}
-.ctrl{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);background:#fff;color:var(--blue-700);transition:background-color .2s,border-color .2s,color .2s,opacity .2s}
-.ctrl .ico{width:18px;height:18px}
+.line{scroll-margin-top:150px;display:grid;grid-template-columns:290px minmax(0,1fr);gap:clamp(24px,3vw,40px);align-items:center}
+.line+.line{margin-top:clamp(56px,6vw,80px)}
+.line-info{display:flex;flex-direction:column;min-width:0}
+.line-meta{display:flex;align-items:center;gap:12px}
+.line-num{font-size:15px;font-weight:800;color:var(--red-600)}
+.line-dash{width:26px;height:1px;background:var(--blue-700)}
+.tag{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-700)}
+.line h3{margin:14px 0 14px;font-size:clamp(32px,3vw,44px);line-height:1.05;letter-spacing:-.035em;color:var(--blue-700)}
+.line-info p{font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:var(--muted)}
+.line-ctrl{display:flex;align-items:center;gap:16px;margin-top:clamp(28px,4vw,56px)}
+.line-prog{flex:1;min-width:0}
+.line-count{display:block;margin-bottom:8px;font-size:14px;font-weight:600;color:var(--muted)}
+.ctrl{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--blue-700);box-shadow:0 8px 18px -8px rgba(10,43,87,.3);transition:background-color .2s,border-color .2s,color .2s,opacity .2s}
+.ctrl .ico{width:18px;height:18px;stroke-width:2.4}
 .ctrl.prev .ico{transform:scaleX(-1)}
 .ctrl:hover:not(:disabled){background:var(--blue-700);border-color:var(--blue-700);color:#fff}
-.ctrl:disabled{opacity:.35;cursor:default}
-.ctrls[hidden]{display:none}
+.ctrl:disabled{opacity:.45;cursor:default;box-shadow:none}
+.progress{position:relative;height:5px;border-radius:5px;background:var(--blue-100);overflow:hidden}
+.progress span{position:absolute;top:0;bottom:0;left:0;width:25%;border-radius:5px;background:var(--blue-600);transition:transform .2s linear,width .2s}
 
-.track{--gap:18px;--per:4;display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));gap:var(--gap);margin:0;padding:4px 2px 6px;list-style:none;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.track{--gap:18px;--per:4;display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));gap:var(--gap);margin:0;padding:6px 4px 14px;list-style:none;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .track::-webkit-scrollbar{display:none}
 .track:focus-visible{outline-offset:4px}
-.model{scroll-snap-align:start;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
-.model:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:var(--blue-200)}
-.model-media{position:relative;height:190px;display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr);place-items:center;padding:20px 18px 14px;background:radial-gradient(120% 95% at 50% 30%,#fff 0%,#f6f9fc 55%,#e9f0f7 100%);border-bottom:1px solid var(--line)}
+.model{scroll-snap-align:start;display:flex;flex-direction:column;padding:12px;border:1px solid #dbe5f1;border-radius:18px;background:#fff;box-shadow:0 18px 36px -24px rgba(10,43,87,.35);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+.model:hover{transform:translateY(-5px);box-shadow:0 28px 48px -26px rgba(10,43,87,.45);border-color:var(--blue-200)}
+.model-media{position:relative;height:200px;display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr);place-items:center;padding:18px 16px;border-radius:12px;overflow:hidden;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M32 28v8M28 32h8' stroke='%232468cc' stroke-opacity='.28' stroke-width='1'/%3E%3C/svg%3E") center/64px 64px,linear-gradient(rgba(36,104,204,.05) 1px,transparent 1px) center/16px 16px,linear-gradient(90deg,rgba(36,104,204,.05) 1px,transparent 1px) center/16px 16px,radial-gradient(110% 90% at 50% 40%,#fff 0%,#eef4fb 60%,#dfeaf7 100%)}
 .model-media img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s var(--ease)}
 .model:hover .model-media img{transform:scale(1.05)}
-.model-body{display:flex;flex-direction:column;flex:1;padding:18px 18px 18px}
-.code{align-self:flex-start;padding:3px 10px;border-radius:999px;background:var(--blue-50);border:1px solid var(--blue-100);font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--blue-700);font-variant-numeric:tabular-nums}
-.code.muted{background:#fff;color:var(--muted);border-color:var(--line);font-weight:700}
-.model h4{margin:12px 0 14px;font-size:15px;line-height:1.45;font-weight:700;color:var(--ink);letter-spacing:-.01em}
-.model dl{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:auto 0 0;padding:12px 0 0;border-top:1px dashed var(--line-strong)}
-.model dt{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.model dd{margin:0;font-size:17px;font-weight:800;color:var(--blue-700);font-variant-numeric:tabular-nums;white-space:nowrap}
-.quote-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;min-height:42px;border:1px solid var(--blue-200);border-radius:10px;background:#fff;font-size:14px;font-weight:700;color:var(--red-600);transition:background-color .2s,border-color .2s,color .2s}
-.quote-link .ico{width:16px;height:16px;transition:transform .25s var(--ease)}
-.quote-link:hover{background:var(--red-600);border-color:var(--red-600);color:#fff}
-.quote-link:hover .ico{transform:translate(2px,-2px)}
+.model-body{display:flex;flex-direction:column;flex:1;padding:14px 6px 4px}
+.code{align-self:flex-start;padding:3px 12px;border-radius:999px;background:var(--blue-100);font-size:13px;font-weight:800;letter-spacing:.01em;color:var(--blue-700);font-variant-numeric:tabular-nums}
+.code.muted{background:#eef2f7;color:var(--muted)}
+.model h4{margin:10px 0 14px;font-size:17.5px;line-height:1.3;font-weight:600;color:var(--ink);letter-spacing:-.015em}
+.model dl{display:flex;align-items:center;gap:10px;margin:auto 0 0;padding:12px 0 0;border-top:1px solid var(--line)}
+.model dt{display:flex;align-items:center;gap:8px;padding-right:10px;border-right:1px solid var(--line-strong);font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.model dt .ico{width:20px;height:20px;color:var(--ink);stroke-width:1.8}
+.model dd{margin:0 0 0 auto;font-size:21px;font-weight:800;color:var(--blue-600);font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.02em}
+.quote-link{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;min-height:46px;border:1.5px solid var(--red-600);border-radius:10px;background:#fff;font-size:15px;font-weight:700;color:var(--red-600);transition:background-color .2s,color .2s}
+.quote-link .ico{width:18px;height:18px;stroke-width:2.2;transition:transform .25s var(--ease)}
+.quote-link:hover{background:var(--red-600);color:#fff}
+.quote-link:hover .ico{transform:translateX(3px)}
 
-.progress{position:relative;height:4px;margin-top:18px;border-radius:4px;background:var(--line);overflow:hidden}
-.progress span{position:absolute;top:0;bottom:0;left:0;width:25%;border-radius:4px;background:var(--blue-500);transition:transform .2s linear,width .2s}
-
-.spec-note{margin-top:18px;font-size:12.5px;line-height:1.55;color:var(--muted);text-align:center}
+.spec-note{margin-top:28px;font-size:12.5px;line-height:1.55;color:var(--muted);text-align:center}
 
 /* Catálogo */
 .catalogue{display:flex;align-items:center;gap:24px;margin-top:40px;padding:26px 30px;border-radius:var(--r-lg);background:#fff;border:1px solid var(--line);box-shadow:var(--sh-sm)}
@@ -266,6 +268,7 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
 @media (max-width:1080px){
   .benefits{grid-template-columns:repeat(2,1fr)}
   .track{--per:3}
+  .line{grid-template-columns:240px minmax(0,1fr)}
   .cta{grid-template-columns:1fr}
   .cta-photo{left:52%;right:0}
   .cta-list{grid-column:1;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:16px 32px;padding:24px clamp(28px,4vw,52px);clip-path:none}
@@ -281,8 +284,9 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
   .hero-inner{width:auto;padding:40px clamp(24px,5vw,48px) 8px}
   .hero-copy{max-width:600px}
   .track{--per:2}
-  .line-head{flex-wrap:wrap}
-  .line-side{flex-direction:row;align-items:center;justify-content:space-between;width:100%}
+  .line{grid-template-columns:1fr;gap:20px}
+  .line-info p{max-width:560px}
+  .line-ctrl{margin-top:20px;max-width:520px}
   .contact{grid-template-columns:1fr}
   .contact-copy{position:static}
 }
@@ -320,15 +324,15 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
   .line-nav{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:-12px -16px 28px;padding:0 16px 4px;scrollbar-width:none}
   .line-nav::-webkit-scrollbar{display:none}
   .line-nav a{flex:none}
-  .line{padding:18px 0 18px 16px;border-radius:20px}
-  .line+.line{margin-top:20px}
-  .line-head{gap:14px;padding:0 16px 18px 0;margin-bottom:18px}
-  .line-thumb{width:88px;height:62px;padding:6px;border-radius:12px}
-  .line-info{flex-basis:calc(100% - 102px)}
-  .line-info p{font-size:13.5px}
-  .track{--per:1.25;--gap:12px;padding-right:16px;scroll-padding-left:0}
-  .model-media{height:170px}
-  .progress{margin-right:16px}
+  .products-section>.wrap{width:calc(100% - 32px)}
+  .line-nav a{height:40px;padding:0 10px 0 14px;font-size:13.5px}
+  .line+.line{margin-top:48px}
+  .line h3{margin:10px 0 10px}
+  .line-info p{font-size:15px}
+  .line-ctrl{margin-top:18px}
+  .track{--per:1.2;--gap:12px;margin-right:-16px;padding-right:16px}
+  .model-media{height:180px}
+  .model h4{font-size:16.5px}
   .catalogue{flex-direction:column;align-items:flex-start;padding:24px}
   .catalogue .btn{width:100%}
   .cta-section{padding-top:56px}
@@ -371,6 +375,7 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
   <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V10l5 3V10l5 3V5h3l1 8h4v8H3Z"/><path d="M7 17h2M12 17h2M17 17h1"/></symbol>
   <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.8A8 8 0 1 1 21 12Z"/><path d="M8.5 11h7M8.5 14.5h4.5"/></symbol>
+  <symbol id="i-weight" viewBox="0 0 24 24"><path d="M7.5 9h9l2.5 11H5L7.5 9Z"/><path d="M9.5 9a2.5 2.5 0 1 1 5 0"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
 </svg>
 
@@ -462,6 +467,22 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
   </section>
 
   <section class="section products-section" id="produtos" aria-labelledby="prod-title">
+    <svg class="prod-bg" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMin slice" aria-hidden="true" fill="none">
+      <g stroke="#8fb0db" stroke-width="1.1" opacity=".8">
+        <path d="M30 120 180 40l170 90-150 85Z"/><path d="M30 120v70l170 95v-70M350 130v70l-150 85"/><path d="M60 140 180 75l135 72M85 150l115 63M120 105l135 75M150 90l135 75"/>
+        <path d="M95 60v-40h40v60M235 50v-30h40v65"/><path d="M60 175 170 235M260 195l-60 33"/>
+        <path d="M1190 330l140-75 110 60v120l-140 75-110-60Z" opacity=".8"/><path d="M1190 330l110 60 140-75M1300 390v120"/><path d="M1225 345l105-55M1250 360l105-55M1275 375l105-55"/>
+        <path d="M1330 255v-50h30v65"/>
+      </g>
+      <g stroke="#b7cbe6" stroke-width="1" opacity=".7">
+        <path d="M-20 420C200 360 380 520 620 470S1020 360 1460 420"/><path d="M-20 450C200 390 380 550 620 500S1020 390 1460 450"/><path d="M-20 480C200 420 380 580 620 530S1020 420 1460 480"/>
+        <path d="M1000 40C1150 80 1250 20 1460 60"/><path d="M1000 70C1150 110 1250 50 1460 90"/>
+      </g>
+      <g stroke="#7fa3d6" stroke-width="1.2" opacity=".6">
+        <circle cx="1275" cy="210" r="38"/><path d="M1275 160v100M1225 210h100"/>
+        <path d="M1105 54v24M1093 66h24M388 130v20M378 140h20M30 400v20M20 410h20M1395 600v20M1385 610h20M1220 820v20M1210 830h20"/>
+      </g>
+    </svg>
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">Produtos</span>
@@ -479,29 +500,24 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
       </nav>
 
       <article class="line reveal" id="linha-navais" aria-labelledby="t-navais" aria-roledescription="carrossel">
-        <header class="line-head">
-          <div class="line-thumb"><img src="assets/img/linhas/navais.webp" alt="" loading="lazy" decoding="async"></div>
-          <div class="line-info">
-            <div class="line-meta"><span class="line-num">01</span><span class="tag">Aplicações em rios</span></div>
-            <h3 id="t-navais">Flutuantes navais</h3>
-            <p>Soluções especializadas para captação em rios. Ideais para operações em ambientes com correnteza.</p>
+        <div class="line-info">
+          <div class="line-meta"><span class="line-num">01</span><span class="line-dash" aria-hidden="true"></span><span class="tag">Aplicações em rios</span></div>
+          <h3 id="t-navais">Flutuantes navais</h3>
+          <p>Soluções especializadas para captação em rios. Ideais para operações em ambientes com correnteza.</p>
+          <div class="line-ctrl">
+            <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Flutuantes navais" aria-controls="track-navais"><svg class="ico"><use href="#i-chev"/></svg></button>
+            <div class="line-prog"><span class="line-count">7 modelos</span><div class="progress" aria-hidden="true"><span></span></div></div>
+            <button class="ctrl next" type="button" aria-label="Próximos modelos de Flutuantes navais" aria-controls="track-navais"><svg class="ico"><use href="#i-chev"/></svg></button>
           </div>
-          <div class="line-side">
-            <span class="line-count"><b>7</b> modelos</span>
-            <div class="ctrls">
-              <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Flutuantes navais" aria-controls="track-navais"><svg class="ico"><use href="#i-chev"/></svg></button>
-              <button class="ctrl next" type="button" aria-label="Próximos modelos de Flutuantes navais" aria-controls="track-navais"><svg class="ico"><use href="#i-chev"/></svg></button>
-            </div>
-          </div>
-        </header>
+        </div>
         <ul class="track" id="track-navais" tabindex="0" aria-label="Modelos da linha Flutuantes navais">
           <li class="model" aria-roledescription="slide" aria-label="1 de 7">
             <div class="model-media"><img loading="lazy" decoding="async" src="assets/img/modelos/4pmn20.webp" alt="Flutuante naval para bombas monobloco até 20 CV"></div>
             <div class="model-body">
               <span class="code">4PMN20</span>
               <h4>Flutuante naval para bombas monobloco até 20 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>500 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="4PMN20 — Flutuante naval para bombas monobloco até 20 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>500 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="4PMN20 — Flutuante naval para bombas monobloco até 20 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="2 de 7">
@@ -509,8 +525,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4P2IMN40</span>
               <h4>Flutuante naval para bombas monobloco até 40 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>800 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="4P2IMN40 — Flutuante naval para bombas monobloco até 40 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>800 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="4P2IMN40 — Flutuante naval para bombas monobloco até 40 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="3 de 7">
@@ -518,8 +534,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4P4IMNV100</span>
               <h4>Flutuante naval para bombas monobloco até 100 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.300 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="4P4IMNV100 — Flutuante naval para bombas monobloco até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.300 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="4P4IMNV100 — Flutuante naval para bombas monobloco até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="4 de 7">
@@ -527,8 +543,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">6P4IMNV200</span>
               <h4>Flutuante naval para bombas monobloco até 200 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.600 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="6P4IMNV200 — Flutuante naval para bombas monobloco até 200 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.600 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="6P4IMNV200 — Flutuante naval para bombas monobloco até 200 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="5 de 7">
@@ -536,8 +552,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code muted">Configuração especial</span>
               <h4>Flutuante naval para 2 bombas monobloco até 200 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>4.500 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="Flutuante naval para 2 bombas monobloco até 200 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>4.500 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="Flutuante naval para 2 bombas monobloco até 200 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="6 de 7">
@@ -545,8 +561,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code muted">Configuração especial</span>
               <h4>Flutuante naval para 2 bombas monobloco até 100 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>2.700 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="Flutuante naval para 2 bombas monobloco até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>2.700 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="Flutuante naval para 2 bombas monobloco até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="7 de 7">
@@ -554,38 +570,32 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code muted">Configuração especial</span>
               <h4>Flutuante naval para 2 bombas monobloco em série até 200 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>4.500 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="Flutuante naval para 2 bombas monobloco em série até 200 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>4.500 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Flutuantes navais" data-model="Flutuante naval para 2 bombas monobloco em série até 200 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
         </ul>
-        <div class="progress" aria-hidden="true"><span></span></div>
       </article>
 
       <article class="line reveal" id="linha-monobloco" aria-labelledby="t-monobloco" aria-roledescription="carrossel">
-        <header class="line-head">
-          <div class="line-thumb"><img src="assets/img/linhas/monobloco.webp" alt="" loading="lazy" decoding="async"></div>
-          <div class="line-info">
-            <div class="line-meta"><span class="line-num">02</span><span class="tag">Diferentes configurações</span></div>
-            <h3 id="t-monobloco">Bombas monobloco</h3>
-            <p>Estabilidade e eficiência para projetos de bombeamento, em diversas capacidades e potências.</p>
+        <div class="line-info">
+          <div class="line-meta"><span class="line-num">02</span><span class="line-dash" aria-hidden="true"></span><span class="tag">Diferentes configurações</span></div>
+          <h3 id="t-monobloco">Bombas monobloco</h3>
+          <p>Estabilidade e eficiência para projetos de bombeamento, em diversas capacidades e potências.</p>
+          <div class="line-ctrl">
+            <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Bombas monobloco" aria-controls="track-monobloco"><svg class="ico"><use href="#i-chev"/></svg></button>
+            <div class="line-prog"><span class="line-count">13 modelos</span><div class="progress" aria-hidden="true"><span></span></div></div>
+            <button class="ctrl next" type="button" aria-label="Próximos modelos de Bombas monobloco" aria-controls="track-monobloco"><svg class="ico"><use href="#i-chev"/></svg></button>
           </div>
-          <div class="line-side">
-            <span class="line-count"><b>13</b> modelos</span>
-            <div class="ctrls">
-              <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Bombas monobloco" aria-controls="track-monobloco"><svg class="ico"><use href="#i-chev"/></svg></button>
-              <button class="ctrl next" type="button" aria-label="Próximos modelos de Bombas monobloco" aria-controls="track-monobloco"><svg class="ico"><use href="#i-chev"/></svg></button>
-            </div>
-          </div>
-        </header>
+        </div>
         <ul class="track" id="track-monobloco" tabindex="0" aria-label="Modelos da linha Bombas monobloco">
           <li class="model" aria-roledescription="slide" aria-label="1 de 13">
             <div class="model-media"><img loading="lazy" decoding="async" src="assets/img/modelos/fbm10.webp" alt="Flutuante para bomba monobloco de 1 a 7,5 CV"></div>
             <div class="model-body">
               <span class="code">FBM10</span>
               <h4>Flutuante para bomba monobloco de 1 a 7,5 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>125 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="FBM10 — Flutuante para bomba monobloco de 1 a 7,5 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>125 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="FBM10 — Flutuante para bomba monobloco de 1 a 7,5 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="2 de 13">
@@ -593,8 +603,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">FBM15</span>
               <h4>Flutuante para bomba monobloco de 10 a 15 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>200 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="FBM15 — Flutuante para bomba monobloco de 10 a 15 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>200 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="FBM15 — Flutuante para bomba monobloco de 10 a 15 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="3 de 13">
@@ -602,8 +612,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2AG30</span>
               <h4>Flutuante para bomba monobloco de 15 a 25 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>350 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2AG30 — Flutuante para bomba monobloco de 15 a 25 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>350 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2AG30 — Flutuante para bomba monobloco de 15 a 25 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="4 de 13">
@@ -611,8 +621,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2AGD10</span>
               <h4>Flutuante para 2 bombas monobloco de até 10 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>300 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2AGD10 — Flutuante para 2 bombas monobloco de até 10 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>300 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2AGD10 — Flutuante para 2 bombas monobloco de até 10 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="5 de 13">
@@ -620,8 +630,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2VG75</span>
               <h4>Flutuante para bomba monobloco de 40 a 75 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.250 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2VG75 — Flutuante para bomba monobloco de 40 a 75 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.250 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2VG75 — Flutuante para bomba monobloco de 40 a 75 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="6 de 13">
@@ -629,8 +639,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2VGD30</span>
               <h4>Flutuante para 2 bombas monobloco de até 30 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.200 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2VGD30 — Flutuante para 2 bombas monobloco de até 30 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.200 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2VGD30 — Flutuante para 2 bombas monobloco de até 30 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="7 de 13">
@@ -638,8 +648,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">3VGD40</span>
               <h4>Flutuante para 2 bombas monobloco de 60 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.800 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="3VGD40 — Flutuante para 2 bombas monobloco de 60 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.800 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="3VGD40 — Flutuante para 2 bombas monobloco de 60 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="8 de 13">
@@ -647,8 +657,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4VGT30</span>
               <h4>Flutuante para 3 bombas monobloco de 30 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>2.100 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="4VGT30 — Flutuante para 3 bombas monobloco de 30 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>2.100 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="4VGT30 — Flutuante para 3 bombas monobloco de 30 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="9 de 13">
@@ -656,8 +666,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2VG75C</span>
               <h4>Flutuante para bomba monobloco de 40 a 75 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.250 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2VG75C — Flutuante para bomba monobloco de 40 a 75 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.250 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="2VG75C — Flutuante para bomba monobloco de 40 a 75 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="10 de 13">
@@ -665,8 +675,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4VG200C</span>
               <h4>Flutuante para bomba monobloco de até 200 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>2.400 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="4VG200C — Flutuante para bomba monobloco de até 200 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>2.400 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="4VG200C — Flutuante para bomba monobloco de até 200 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="11 de 13">
@@ -674,8 +684,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4VG200CL</span>
               <h4>Flutuante para bomba monobloco de até 200 CV, saída lateral</h4>
-              <dl><dt>Capacidade*</dt><dd>2.400 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="4VG200CL — Flutuante para bomba monobloco de até 200 CV, saída lateral">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>2.400 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="4VG200CL — Flutuante para bomba monobloco de até 200 CV, saída lateral">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="12 de 13">
@@ -683,8 +693,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">6VG75CL</span>
               <h4>Flutuante para 2 bombas monobloco de até 150 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>3.500 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="6VG75CL — Flutuante para 2 bombas monobloco de até 150 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>3.500 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="6VG75CL — Flutuante para 2 bombas monobloco de até 150 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="13 de 13">
@@ -692,38 +702,32 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">6VG75C</span>
               <h4>Flutuante para 2 bombas monobloco de até 150 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>3.500 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="6VG75C — Flutuante para 2 bombas monobloco de até 150 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>3.500 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas monobloco" data-model="6VG75C — Flutuante para 2 bombas monobloco de até 150 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
         </ul>
-        <div class="progress" aria-hidden="true"><span></span></div>
       </article>
 
       <article class="line reveal" id="linha-mancal" aria-labelledby="t-mancal" aria-roledescription="carrossel">
-        <header class="line-head">
-          <div class="line-thumb"><img src="assets/img/linhas/mancal.webp" alt="" loading="lazy" decoding="async"></div>
-          <div class="line-info">
-            <div class="line-meta"><span class="line-num">03</span><span class="tag">Bombeamento horizontal</span></div>
-            <h3 id="t-mancal">Bombas de mancal</h3>
-            <p>Sustentação para bombas de mancal montadas na horizontal e equipamentos de maior porte.</p>
+        <div class="line-info">
+          <div class="line-meta"><span class="line-num">03</span><span class="line-dash" aria-hidden="true"></span><span class="tag">Bombeamento horizontal</span></div>
+          <h3 id="t-mancal">Bombas de mancal</h3>
+          <p>Sustentação para bombas de mancal montadas na horizontal e equipamentos de maior porte.</p>
+          <div class="line-ctrl">
+            <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Bombas de mancal" aria-controls="track-mancal"><svg class="ico"><use href="#i-chev"/></svg></button>
+            <div class="line-prog"><span class="line-count">7 modelos</span><div class="progress" aria-hidden="true"><span></span></div></div>
+            <button class="ctrl next" type="button" aria-label="Próximos modelos de Bombas de mancal" aria-controls="track-mancal"><svg class="ico"><use href="#i-chev"/></svg></button>
           </div>
-          <div class="line-side">
-            <span class="line-count"><b>7</b> modelos</span>
-            <div class="ctrls">
-              <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Bombas de mancal" aria-controls="track-mancal"><svg class="ico"><use href="#i-chev"/></svg></button>
-              <button class="ctrl next" type="button" aria-label="Próximos modelos de Bombas de mancal" aria-controls="track-mancal"><svg class="ico"><use href="#i-chev"/></svg></button>
-            </div>
-          </div>
-        </header>
+        </div>
         <ul class="track" id="track-mancal" tabindex="0" aria-label="Modelos da linha Bombas de mancal">
           <li class="model" aria-roledescription="slide" aria-label="1 de 7">
             <div class="model-media"><img loading="lazy" decoding="async" src="assets/img/modelos/fbh15.webp" alt="Flutuante para bomba mancal até 15 CV"></div>
             <div class="model-body">
               <span class="code">FBH15</span>
               <h4>Flutuante para bomba mancal até 15 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>200 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="FBH15 — Flutuante para bomba mancal até 15 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>200 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="FBH15 — Flutuante para bomba mancal até 15 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="2 de 7">
@@ -731,8 +735,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">3AGH15</span>
               <h4>Flutuante para 2 bombas mancal de até 15 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>600 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="3AGH15 — Flutuante para 2 bombas mancal de até 15 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>600 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="3AGH15 — Flutuante para 2 bombas mancal de até 15 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="3 de 7">
@@ -740,8 +744,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4AG50M</span>
               <h4>Flutuante para bombas mancal de até 50 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.300 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="4AG50M — Flutuante para bombas mancal de até 50 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.300 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="4AG50M — Flutuante para bombas mancal de até 50 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="4 de 7">
@@ -749,8 +753,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4VG100H</span>
               <h4>Flutuante para bombas mancal de até 175 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>2.200 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="4VG100H — Flutuante para bombas mancal de até 175 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>2.200 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="4VG100H — Flutuante para bombas mancal de até 175 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="5 de 7">
@@ -758,8 +762,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">6VG200H</span>
               <h4>Flutuante para bombas mancal de até 250 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>3.000 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="6VG200H — Flutuante para bombas mancal de até 250 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>3.000 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="6VG200H — Flutuante para bombas mancal de até 250 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="6 de 7">
@@ -767,8 +771,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">6VG2X75M</span>
               <h4>Flutuante para 2 bombas mancal de até 100 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>3.000 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="6VG2X75M — Flutuante para 2 bombas mancal de até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>3.000 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="6VG2X75M — Flutuante para 2 bombas mancal de até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="7 de 7">
@@ -776,38 +780,32 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">8VG2X250</span>
               <h4>Flutuante para 2 bombas mancal em série de até 100 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>4.200 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="8VG2X250 — Flutuante para 2 bombas mancal em série de até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>4.200 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas de mancal" data-model="8VG2X250 — Flutuante para 2 bombas mancal em série de até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
         </ul>
-        <div class="progress" aria-hidden="true"><span></span></div>
       </article>
 
       <article class="line reveal" id="linha-valvulas" aria-labelledby="t-valvulas" aria-roledescription="carrossel">
-        <header class="line-head">
-          <div class="line-thumb"><img src="assets/img/linhas/valvulas.webp" alt="" loading="lazy" decoding="async"></div>
-          <div class="line-info">
-            <div class="line-meta"><span class="line-num">04</span><span class="tag">Sustentação na captação</span></div>
-            <h3 id="t-valvulas">Válvulas de sucção</h3>
-            <p>Modelos robustos para sustentar válvulas de sucção, com alta capacidade de carga e durabilidade.</p>
+        <div class="line-info">
+          <div class="line-meta"><span class="line-num">04</span><span class="line-dash" aria-hidden="true"></span><span class="tag">Sustentação na captação</span></div>
+          <h3 id="t-valvulas">Válvulas de sucção</h3>
+          <p>Modelos robustos para sustentar válvulas de sucção, com alta capacidade de carga e durabilidade.</p>
+          <div class="line-ctrl">
+            <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Válvulas de sucção" aria-controls="track-valvulas"><svg class="ico"><use href="#i-chev"/></svg></button>
+            <div class="line-prog"><span class="line-count">5 modelos</span><div class="progress" aria-hidden="true"><span></span></div></div>
+            <button class="ctrl next" type="button" aria-label="Próximos modelos de Válvulas de sucção" aria-controls="track-valvulas"><svg class="ico"><use href="#i-chev"/></svg></button>
           </div>
-          <div class="line-side">
-            <span class="line-count"><b>5</b> modelos</span>
-            <div class="ctrls">
-              <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Válvulas de sucção" aria-controls="track-valvulas"><svg class="ico"><use href="#i-chev"/></svg></button>
-              <button class="ctrl next" type="button" aria-label="Próximos modelos de Válvulas de sucção" aria-controls="track-valvulas"><svg class="ico"><use href="#i-chev"/></svg></button>
-            </div>
-          </div>
-        </header>
+        </div>
         <ul class="track" id="track-valvulas" tabindex="0" aria-label="Modelos da linha Válvulas de sucção">
           <li class="model" aria-roledescription="slide" aria-label="1 de 5">
             <div class="model-media"><img loading="lazy" decoding="async" src="assets/img/modelos/4aps6-8.webp" alt="Flutuante para válvula de sucção até 8&quot;"></div>
             <div class="model-body">
               <span class="code">4APS6/8</span>
               <h4>Flutuante para válvula de sucção até 8&quot;</h4>
-              <dl><dt>Capacidade*</dt><dd>220 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="4APS6/8 — Flutuante para válvula de sucção até 8&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>220 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="4APS6/8 — Flutuante para válvula de sucção até 8&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="2 de 5">
@@ -815,8 +813,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2AGS10</span>
               <h4>Flutuante para válvula de sucção até 8&quot;</h4>
-              <dl><dt>Capacidade*</dt><dd>350 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="2AGS10 — Flutuante para válvula de sucção até 8&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>350 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="2AGS10 — Flutuante para válvula de sucção até 8&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="3 de 5">
@@ -824,8 +822,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2VGS12</span>
               <h4>Flutuante para válvula de sucção até 12&quot;</h4>
-              <dl><dt>Capacidade*</dt><dd>1.250 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="2VGS12 — Flutuante para válvula de sucção até 12&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.250 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="2VGS12 — Flutuante para válvula de sucção até 12&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="4 de 5">
@@ -833,8 +831,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4VGS16</span>
               <h4>Flutuante para válvula de sucção até 16&quot;</h4>
-              <dl><dt>Capacidade*</dt><dd>2.300 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="4VGS16 — Flutuante para válvula de sucção até 16&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>2.300 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="4VGS16 — Flutuante para válvula de sucção até 16&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="5 de 5">
@@ -842,38 +840,32 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">3VGS12</span>
               <h4>Flutuante para 2 válvulas de sucção até 12&quot;</h4>
-              <dl><dt>Capacidade*</dt><dd>1.750 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="3VGS12 — Flutuante para 2 válvulas de sucção até 12&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.750 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Válvulas de sucção" data-model="3VGS12 — Flutuante para 2 válvulas de sucção até 12&quot;">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
         </ul>
-        <div class="progress" aria-hidden="true"><span></span></div>
       </article>
 
       <article class="line reveal" id="linha-submersas" aria-labelledby="t-submersas" aria-roledescription="carrossel">
-        <header class="line-head">
-          <div class="line-thumb"><img src="assets/img/linhas/submersas.webp" alt="" loading="lazy" decoding="async"></div>
-          <div class="line-info">
-            <div class="line-meta"><span class="line-num">05</span><span class="tag">Soluções para submersíveis</span></div>
-            <h3 id="t-submersas">Bombas submersas</h3>
-            <p>Solução adaptada para bombas submersíveis: captação limpa, instalação e manutenção facilitadas.</p>
+        <div class="line-info">
+          <div class="line-meta"><span class="line-num">05</span><span class="line-dash" aria-hidden="true"></span><span class="tag">Soluções para submersíveis</span></div>
+          <h3 id="t-submersas">Bombas submersas</h3>
+          <p>Solução adaptada para bombas submersíveis: captação limpa, instalação e manutenção facilitadas.</p>
+          <div class="line-ctrl">
+            <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Bombas submersas" aria-controls="track-submersas"><svg class="ico"><use href="#i-chev"/></svg></button>
+            <div class="line-prog"><span class="line-count">5 modelos</span><div class="progress" aria-hidden="true"><span></span></div></div>
+            <button class="ctrl next" type="button" aria-label="Próximos modelos de Bombas submersas" aria-controls="track-submersas"><svg class="ico"><use href="#i-chev"/></svg></button>
           </div>
-          <div class="line-side">
-            <span class="line-count"><b>5</b> modelos</span>
-            <div class="ctrls">
-              <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Bombas submersas" aria-controls="track-submersas"><svg class="ico"><use href="#i-chev"/></svg></button>
-              <button class="ctrl next" type="button" aria-label="Próximos modelos de Bombas submersas" aria-controls="track-submersas"><svg class="ico"><use href="#i-chev"/></svg></button>
-            </div>
-          </div>
-        </header>
+        </div>
         <ul class="track" id="track-submersas" tabindex="0" aria-label="Modelos da linha Bombas submersas">
           <li class="model" aria-roledescription="slide" aria-label="1 de 5">
             <div class="model-media"><img loading="lazy" decoding="async" src="assets/img/modelos/fbs5.webp" alt="Flutuante para bomba submersível de 1 a 5 CV"></div>
             <div class="model-body">
               <span class="code">FBS5</span>
               <h4>Flutuante para bomba submersível de 1 a 5 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>125 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="FBS5 — Flutuante para bomba submersível de 1 a 5 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>125 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="FBS5 — Flutuante para bomba submersível de 1 a 5 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="2 de 5">
@@ -881,8 +873,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4P4IMNV100S</span>
               <h4>Flutuante naval para bomba submersa até 100 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.600 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="4P4IMNV100S — Flutuante naval para bomba submersa até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.600 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="4P4IMNV100S — Flutuante naval para bomba submersa até 100 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="3 de 5">
@@ -890,8 +882,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2AGSUB25</span>
               <h4>Flutuante para bomba submersa até 25 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>500 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="2AGSUB25 — Flutuante para bomba submersa até 25 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>500 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="2AGSUB25 — Flutuante para bomba submersa até 25 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="4 de 5">
@@ -899,8 +891,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">2VGSUB75</span>
               <h4>Flutuante para bomba submersa até 75 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>1.200 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="2VGSUB75 — Flutuante para bomba submersa até 75 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>1.200 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="2VGSUB75 — Flutuante para bomba submersa até 75 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="5 de 5">
@@ -908,38 +900,32 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">4VGSUB100</span>
               <h4>Flutuante para bomba submersa até 150 CV</h4>
-              <dl><dt>Capacidade*</dt><dd>2.200 kg</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="4VGSUB100 — Flutuante para bomba submersa até 150 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Capacidade*</dt><dd>2.200 kg</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Bombas submersas" data-model="4VGSUB100 — Flutuante para bomba submersa até 150 CV">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
         </ul>
-        <div class="progress" aria-hidden="true"><span></span></div>
       </article>
 
       <article class="line reveal" id="linha-pead" aria-labelledby="t-pead" aria-roledescription="carrossel">
-        <header class="line-head">
-          <div class="line-thumb"><img src="assets/img/linhas/pead.webp" alt="" loading="lazy" decoding="async"></div>
-          <div class="line-info">
-            <div class="line-meta"><span class="line-num">06</span><span class="tag">Apoio ao sistema</span></div>
-            <h3 id="t-pead">Tubulações PEAD</h3>
-            <p>Flutuantes auxiliares que dão sustentação e estabilidade à tubulação PEAD, para diferentes diâmetros.</p>
+        <div class="line-info">
+          <div class="line-meta"><span class="line-num">06</span><span class="line-dash" aria-hidden="true"></span><span class="tag">Apoio ao sistema</span></div>
+          <h3 id="t-pead">Tubulações PEAD</h3>
+          <p>Flutuantes auxiliares que dão sustentação e estabilidade à tubulação PEAD, para diferentes diâmetros.</p>
+          <div class="line-ctrl">
+            <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Tubulações PEAD" aria-controls="track-pead"><svg class="ico"><use href="#i-chev"/></svg></button>
+            <div class="line-prog"><span class="line-count">8 modelos</span><div class="progress" aria-hidden="true"><span></span></div></div>
+            <button class="ctrl next" type="button" aria-label="Próximos modelos de Tubulações PEAD" aria-controls="track-pead"><svg class="ico"><use href="#i-chev"/></svg></button>
           </div>
-          <div class="line-side">
-            <span class="line-count"><b>8</b> modelos</span>
-            <div class="ctrls">
-              <button class="ctrl prev" type="button" aria-label="Modelos anteriores de Tubulações PEAD" aria-controls="track-pead"><svg class="ico"><use href="#i-chev"/></svg></button>
-              <button class="ctrl next" type="button" aria-label="Próximos modelos de Tubulações PEAD" aria-controls="track-pead"><svg class="ico"><use href="#i-chev"/></svg></button>
-            </div>
-          </div>
-        </header>
+        </div>
         <ul class="track" id="track-pead" tabindex="0" aria-label="Modelos da linha Tubulações PEAD">
           <li class="model" aria-roledescription="slide" aria-label="1 de 8">
             <div class="model-media"><img loading="lazy" decoding="async" src="assets/img/modelos/fpp160.webp" alt="Flutuante auxiliar para tubulação PEAD de 160"></div>
             <div class="model-body">
               <span class="code">FPP160</span>
               <h4>Flutuante auxiliar para tubulação PEAD de 160</h4>
-              <dl><dt>Tubo PEAD</dt><dd>Ø 160</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP160 — Flutuante auxiliar para tubulação PEAD de 160">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Tubo PEAD</dt><dd>Ø 160</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP160 — Flutuante auxiliar para tubulação PEAD de 160">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="2 de 8">
@@ -947,8 +933,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">FPP200</span>
               <h4>Flutuante auxiliar para tubulação PEAD de 200</h4>
-              <dl><dt>Tubo PEAD</dt><dd>Ø 200</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP200 — Flutuante auxiliar para tubulação PEAD de 200">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Tubo PEAD</dt><dd>Ø 200</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP200 — Flutuante auxiliar para tubulação PEAD de 200">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="3 de 8">
@@ -956,8 +942,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">FPP225</span>
               <h4>Flutuante auxiliar para tubulação PEAD de 225</h4>
-              <dl><dt>Tubo PEAD</dt><dd>Ø 225</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP225 — Flutuante auxiliar para tubulação PEAD de 225">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Tubo PEAD</dt><dd>Ø 225</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP225 — Flutuante auxiliar para tubulação PEAD de 225">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="4 de 8">
@@ -965,8 +951,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">FPP250</span>
               <h4>Flutuante auxiliar para tubulação PEAD de 250</h4>
-              <dl><dt>Tubo PEAD</dt><dd>Ø 250</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP250 — Flutuante auxiliar para tubulação PEAD de 250">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Tubo PEAD</dt><dd>Ø 250</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP250 — Flutuante auxiliar para tubulação PEAD de 250">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="5 de 8">
@@ -974,8 +960,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">FPP280</span>
               <h4>Flutuante auxiliar para tubulação PEAD de 280</h4>
-              <dl><dt>Tubo PEAD</dt><dd>Ø 280</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP280 — Flutuante auxiliar para tubulação PEAD de 280">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Tubo PEAD</dt><dd>Ø 280</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP280 — Flutuante auxiliar para tubulação PEAD de 280">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="6 de 8">
@@ -983,8 +969,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">FPP315</span>
               <h4>Flutuante auxiliar para tubulação PEAD de 315</h4>
-              <dl><dt>Tubo PEAD</dt><dd>Ø 315</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP315 — Flutuante auxiliar para tubulação PEAD de 315">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Tubo PEAD</dt><dd>Ø 315</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP315 — Flutuante auxiliar para tubulação PEAD de 315">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="7 de 8">
@@ -992,8 +978,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">FPP355</span>
               <h4>Flutuante auxiliar para tubulação PEAD de 355</h4>
-              <dl><dt>Tubo PEAD</dt><dd>Ø 355</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP355 — Flutuante auxiliar para tubulação PEAD de 355">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Tubo PEAD</dt><dd>Ø 355</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP355 — Flutuante auxiliar para tubulação PEAD de 355">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
           <li class="model" aria-roledescription="slide" aria-label="8 de 8">
@@ -1001,12 +987,11 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
             <div class="model-body">
               <span class="code">FPP400</span>
               <h4>Flutuante auxiliar para tubulação PEAD de 400</h4>
-              <dl><dt>Tubo PEAD</dt><dd>Ø 400</dd></dl>
-              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP400 — Flutuante auxiliar para tubulação PEAD de 400">Cotar este modelo <svg class="ico"><use href="#i-arrow-ur"/></svg></button>
+              <dl><dt><svg class="ico" aria-hidden="true"><use href="#i-weight"/></svg>Tubo PEAD</dt><dd>Ø 400</dd></dl>
+              <button class="quote-link choose" type="button" data-line="Tubulações PEAD" data-model="FPP400 — Flutuante auxiliar para tubulação PEAD de 400">Cotar este modelo <svg class="ico"><use href="#i-arrow"/></svg></button>
             </div>
           </li>
         </ul>
-        <div class="progress" aria-hidden="true"><span></span></div>
       </article>
 
       <p class="spec-note">*Capacidade informada no catálogo do fabricante. Confirme com a Vazão a configuração adequada para o seu projeto.</p>
@@ -1137,7 +1122,6 @@ document.documentElement.classList.add('js');
       const ratio = track.scrollWidth ? track.clientWidth / track.scrollWidth : 1;
       bar.style.width = (ratio * 100) + '%';
       bar.style.transform = 'translateX(' + (max > 0 ? (track.scrollLeft / max) * ((1 / ratio) - 1) * 100 : 0) + '%)';
-      line.querySelector('.ctrls').hidden = max <= 2;
     };
     prev.addEventListener('click', () => track.scrollBy({left: -step()}));
     next.addEventListener('click', () => track.scrollBy({left: step()}));
@@ -1145,6 +1129,15 @@ document.documentElement.classList.add('js');
     addEventListener('resize', update);
     update();
   });
+
+  // Destaca no menu de linhas a linha que está na tela
+  const navLinks = $$('.line-nav a');
+  const setActive = id => navLinks.forEach(a => a.classList.toggle('active', a.hash === '#' + id));
+  setActive($('.line').id);
+  if ('IntersectionObserver' in window) {
+    const spy = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }), {rootMargin:'-45% 0px -50% 0px'});
+    $$('.line').forEach(l => spy.observe(l));
+  }
 
   // Botões "Cotar" levam até a área de contato
   $$('.choose').forEach(b => b.addEventListener('click', () => $('#contato').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'})));
