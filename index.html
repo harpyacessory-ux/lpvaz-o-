@@ -201,6 +201,7 @@ p{text-wrap:pretty}
 .text-link{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--blue-700);border-bottom:2px solid var(--blue-200);padding-bottom:3px;transition:border-color .2s}
 .text-link:hover{border-color:var(--blue-700)}
 .text-link .ico{width:16px;height:16px}
+.form-slot{min-height:760px}
 .form-card{padding:clamp(24px,3.4vw,40px);border-radius:var(--r-xl);background:#fff;border:1px solid var(--line);box-shadow:var(--sh-lg)}
 .form-head{display:flex;align-items:flex-start;gap:16px;padding-bottom:24px;margin-bottom:26px;border-bottom:1px solid var(--line)}
 .form-head .badge{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:14px;background:var(--blue-50);color:var(--blue-600)}
@@ -1028,42 +1029,8 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
         <a class="text-link" href="https://vazao.com.br/" target="_blank" rel="noopener">Acessar os canais oficiais da Vazão <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
       </div>
 
-      <form class="form-card reveal d1" id="quote" novalidate>
-        <div class="form-head">
-          <div class="badge" aria-hidden="true"><svg class="ico"><use href="#i-chat"/></svg></div>
-          <div>
-            <h3>Conte sobre seu projeto</h3>
-            <p>Preencha os dados para preparar sua solicitação de cotação.</p>
-          </div>
-        </div>
-        <div class="fields">
-          <div class="field"><label for="f-nome">Seu nome <i>*</i></label><input class="input" id="f-nome" name="nome" autocomplete="name" required placeholder="Nome completo"></div>
-          <div class="field"><label for="f-empresa">Empresa ou propriedade <i>*</i></label><input class="input" id="f-empresa" name="empresa" autocomplete="organization" required placeholder="Nome da empresa"></div>
-          <div class="field"><label for="f-email">E-mail <i>*</i></label><input class="input" type="email" id="f-email" name="email" autocomplete="email" required placeholder="voce@empresa.com.br"></div>
-          <div class="field"><label for="f-tel">Telefone / WhatsApp <i>*</i></label><input class="input" type="tel" id="f-tel" name="telefone" autocomplete="tel" inputmode="tel" required placeholder="(00) 00000-0000"></div>
-          <div class="field full"><label for="solution">Solução de interesse <i>*</i></label>
-            <select class="input" id="solution" name="solucao" required>
-              <option value="" disabled selected>Selecione uma solução</option>
-              <option>Flutuantes navais</option>
-              <option>Bombas monobloco</option>
-              <option>Bombas de mancal</option>
-              <option>Válvulas de sucção</option>
-              <option>Bombas submersas</option>
-              <option>Tubulações PEAD</option>
-              <option>Preciso de orientação técnica</option>
-            </select>
-          </div>
-          <div class="field full"><label for="f-app">Conte sobre sua aplicação <i>*</i></label><textarea class="input" id="f-app" name="aplicacao" required placeholder="Ex.: potência da bomba, local de captação, diâmetro da tubulação ou outras necessidades."></textarea></div>
-        </div>
-        <button class="btn btn-block" type="submit" id="submit-btn">Preparar solicitação <svg class="ico"><use href="#i-arrow"/></svg></button>
-        <p class="form-note" id="form-note"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span>Geramos um resumo para você copiar e encaminhar à Vazão. Nenhum dado é enviado automaticamente por esta página.</span></p>
-        <div class="result" id="result" role="status" hidden>
-          <label for="message">Sua solicitação</label>
-          <textarea class="input" id="message" readonly></textarea>
-          <button class="btn btn-outline btn-block" type="button" id="copy">Copiar solicitação</button>
-          <span class="copy-status" id="copy-status"></span>
-        </div>
-      </form>
+      <!-- Espaço reservado para o formulário -->
+      <div class="form-slot" id="form-slot"></div>
     </div>
   </section>
 </main>
@@ -1107,8 +1074,6 @@ textarea.input{min-height:120px;resize:vertical;line-height:1.55}
 <script>
 document.documentElement.classList.add('js');
 (function(){
-  // Integração opcional: preencha somente com o WhatsApp oficial validado da Vazão (DDI + DDD + número, ex.: '5571999999999').
-  const WHATSAPP_NUMBER = '';
   const $ = (s, c=document) => c.querySelector(s);
   const $$ = (s, c=document) => [...c.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1155,42 +1120,8 @@ document.documentElement.classList.add('js');
     update();
   });
 
-  // Seleciona a linha (e o modelo, se houver) no formulário e rola até ele
-  const select = $('#solution'), app = $('#f-app');
-  function chooseLine(name, model){
-    select.value = name;
-    if (model) {
-      const prefix = 'Modelo de interesse: ' + model + '\n';
-      app.value = prefix + app.value.replace(/^Modelo de interesse: .*\n?/, '');
-    }
-    $('#contato').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
-    setTimeout(() => (model ? app : select).focus({preventScroll:true}), reduce ? 0 : 500);
-  }
-  $$('.choose').forEach(b => b.addEventListener('click', () => chooseLine(b.dataset.line, b.dataset.model)));
-
-  // Formulário
-  const form = $('#quote');
-  if (WHATSAPP_NUMBER) {
-    $('#submit-btn').firstChild.textContent = 'Continuar no WhatsApp ';
-    $('#form-note span').textContent = 'Ao continuar, sua solicitação será aberta no WhatsApp para você revisar e enviar.';
-  }
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    const d = new FormData(form);
-    const text = 'Olá, equipe Vazão! Gostaria de uma cotação da linha RVA Agro.\n\n'
-      + 'Nome: ' + d.get('nome') + '\nEmpresa/propriedade: ' + d.get('empresa') + '\nE-mail: ' + d.get('email')
-      + '\nTelefone: ' + d.get('telefone') + '\nSolução: ' + d.get('solucao') + '\nAplicação: ' + d.get('aplicacao');
-    if (WHATSAPP_NUMBER) { window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text), '_blank', 'noopener'); return; }
-    $('#message').value = text;
-    $('#result').hidden = false;
-    $('#message').focus();
-  });
-  $('#copy').addEventListener('click', async () => {
-    const msg = $('#message');
-    try { await navigator.clipboard.writeText(msg.value); $('#copy-status').textContent = 'Solicitação copiada. Encaminhe pelo canal de atendimento da Vazão.'; }
-    catch { msg.focus(); msg.select(); $('#copy-status').textContent = 'Texto selecionado. Use Ctrl+C ou a opção Copiar do seu dispositivo.'; }
-  });
+  // Botões "Cotar" levam até a área de contato
+  $$('.choose').forEach(b => b.addEventListener('click', () => $('#contato').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'})));
 })();
 </script>
 </body>
