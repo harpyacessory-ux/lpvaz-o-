@@ -170,15 +170,40 @@ p{text-wrap:pretty}
 .quote-link:hover{background:var(--red-600);color:#fff}
 .quote-link:hover .ico{transform:translateX(3px)}
 
-.spec-note{margin-top:28px;font-size:12.5px;line-height:1.55;color:var(--muted);text-align:center}
+.spec-note{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:32px;font-size:13px;line-height:1.55;color:var(--muted);text-align:center}
+.spec-note .ico{width:16px;height:16px;flex:none;color:var(--blue-500)}
 
 /* Catálogo */
-.catalogue{display:flex;align-items:center;gap:24px;margin-top:40px;padding:26px 30px;border-radius:var(--r-lg);background:#fff;border:1px solid var(--line);box-shadow:var(--sh-sm)}
-.catalogue-icon{display:grid;place-items:center;width:58px;height:58px;flex:none;border-radius:16px;background:#fdeef1;color:var(--red-600)}
-.catalogue-icon .ico{width:28px;height:28px}
-.catalogue-text{flex:1}
-.catalogue-text strong{display:block;font-size:19px;color:var(--blue-700);letter-spacing:-.015em}
-.catalogue-text p{margin-top:4px;font-size:14.5px;color:var(--muted)}
+.catalogue{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(28px,3.6vw,56px);margin-top:28px;padding:clamp(28px,3vw,40px) clamp(28px,3.6vw,56px);border-radius:24px;border:1px solid #d6e3f3;background:linear-gradient(115deg,#fff 0%,#f6f9fe 50%,#e8f0fb 100%);box-shadow:0 36px 70px -42px rgba(10,43,87,.5)}
+.catalogue::before{content:"";position:absolute;inset:0 0 0 45%;z-index:-1;background:linear-gradient(rgba(36,104,204,.07) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,rgba(36,104,204,.07) 1px,transparent 1px) 0 0/28px 28px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
+.catalogue::after{content:"";position:absolute;left:-90px;top:50%;z-index:-1;width:360px;height:360px;border-radius:50%;background:radial-gradient(closest-side,rgba(36,104,204,.16),transparent);transform:translateY(-50%)}
+.cat-cover{position:relative;width:170px;height:206px;flex:none;margin:4px 18px 4px 6px}
+.cat-page{position:absolute;inset:0;border-radius:10px;background:#fff;border:1px solid #d6e3f3;box-shadow:0 18px 30px -18px rgba(10,43,87,.45)}
+.cat-page.back{transform:rotate(-9deg) translate(-10px,6px);background:#e6eef9}
+.cat-page.mid{transform:rotate(-4deg) translate(-4px,2px);background:#f2f6fc}
+.cat-page.front{display:flex;flex-direction:column;overflow:hidden;transform:rotate(3deg);transition:transform .45s var(--ease)}
+.catalogue:hover .cat-page.front{transform:rotate(0) translateY(-4px)}
+.cat-head{padding:14px 14px 12px;background:linear-gradient(135deg,#0b3f8a,#072a59);color:#fff}
+.cat-head small{display:block;font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9fc0ec}
+.cat-head strong{display:block;margin-top:4px;font-size:13px;line-height:1.2;letter-spacing:-.01em}
+.cat-page.front img{flex:1;min-height:0;width:100%;object-fit:contain;padding:10px 12px 4px}
+.cat-foot{display:flex;gap:4px;padding:0 12px 12px}
+.cat-foot i{flex:1;height:4px;border-radius:4px;background:var(--blue-100)}
+.cat-foot i:first-child{background:var(--red-600)}
+.cat-badge{position:absolute;right:-12px;bottom:18px;z-index:2;padding:6px 10px;border-radius:8px;background:var(--red-600);color:#fff;font-size:12px;font-weight:800;letter-spacing:.06em;box-shadow:0 10px 20px -8px rgba(225,6,47,.6)}
+.catalogue-text{min-width:0}
+.catalogue-text .eyebrow{font-size:12px}
+.catalogue-text h3{margin:10px 0 8px;font-size:clamp(24px,2.1vw,32px);line-height:1.15;color:var(--blue-700)}
+.catalogue-text p{font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:var(--muted);max-width:560px}
+.cat-stats{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0;padding:0;list-style:none}
+.cat-stats li{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:999px;background:#fff;border:1px solid #d6e3f3;font-size:13.5px;font-weight:600;color:var(--muted)}
+.cat-stats b{font-size:15px;font-weight:800;color:var(--blue-700)}
+.cat-stats .ico{width:16px;height:16px;color:var(--blue-500)}
+.cat-actions{display:flex;flex-direction:column;align-items:center;gap:10px}
+.cat-actions .btn{min-height:58px;padding:0 30px;font-size:16px}
+.cat-actions .btn .ico.down{transition:transform .25s var(--ease)}
+.cat-actions .btn:hover .ico.down{transform:translateY(3px)}
+.cat-actions small{font-size:12.5px;color:var(--muted)}
 
 /* ---------- Área "fale com a gente" (banner + contato) ---------- */
 .talk{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#f5f8fd 0%,#edf3fb 100%)}
@@ -277,6 +302,8 @@ p{text-wrap:pretty}
   .hero-copy{max-width:600px}
   .track{--per:2}
   .line{grid-template-columns:1fr;gap:20px}
+  .catalogue{grid-template-columns:auto minmax(0,1fr)}
+  .cat-actions{grid-column:2;align-items:flex-start}
   .line-info p{max-width:560px}
   .line-ctrl{margin-top:20px;max-width:520px}
   .contact{grid-template-columns:1fr}
@@ -324,8 +351,12 @@ p{text-wrap:pretty}
   .track{--per:1.2;--gap:12px;margin-right:-16px;padding-right:16px}
   .model-media{height:180px}
   .model h4{font-size:16.5px}
-  .catalogue{flex-direction:column;align-items:flex-start;padding:24px}
-  .catalogue .btn{width:100%}
+  .catalogue{grid-template-columns:1fr;justify-items:start;gap:24px;padding:28px 22px}
+  .catalogue::before{inset:0}
+  .cat-cover{width:140px;height:170px;margin:6px 0 0 14px}
+  .cat-actions{grid-column:auto;width:100%;align-items:center}
+  .cat-actions .btn{width:100%}
+  .spec-note{align-items:flex-start;text-align:left}
   .talk .wrap{width:calc(100% - 32px)}
   .talk::after{display:none}
   .cta-section{padding-top:48px}
@@ -374,6 +405,8 @@ p{text-wrap:pretty}
   <symbol id="i-weight" viewBox="0 0 24 24"><path d="M7.5 9h9l2.5 11H5L7.5 9Z"/><path d="M9.5 9a2.5 2.5 0 1 1 5 0"/></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M9 8h6M9 12h6M9 16h6"/></symbol>
   <symbol id="i-bars" viewBox="0 0 24 24"><path d="M3 20h18M6 20v-6h3v6M10.5 20V6h3v14M15 20v-9h3v9"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
 </svg>
 
@@ -992,15 +1025,33 @@ p{text-wrap:pretty}
         </ul>
       </article>
 
-      <p class="spec-note">*Capacidade informada no catálogo do fabricante. Confirme com a Vazão a configuração adequada para o seu projeto.</p>
+      <p class="spec-note"><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span>*Capacidade informada no catálogo do fabricante. Confirme com a Vazão a configuração adequada para o seu projeto.</span></p>
 
       <div class="catalogue reveal" id="catalogo">
-        <div class="catalogue-icon" aria-hidden="true"><svg class="ico"><use href="#i-pdf"/></svg></div>
-        <div class="catalogue-text">
-          <strong>Quer consultar a linha completa?</strong>
-          <p>Acesse códigos, configurações e capacidades de todos os modelos no catálogo de produtos.</p>
+        <div class="cat-cover" aria-hidden="true">
+          <div class="cat-page back"></div>
+          <div class="cat-page mid"></div>
+          <div class="cat-page front">
+            <div class="cat-head"><small>RVA Agro · Vazão</small><strong>Catálogo de Produtos Flutuantes</strong></div>
+            <img src="assets/img/linhas/navais.webp" alt="" loading="lazy" decoding="async">
+            <div class="cat-foot"><i></i><i></i><i></i></div>
+          </div>
+          <span class="cat-badge">PDF</span>
         </div>
-        <a class="btn btn-outline" href="assets/catalogo-flutuantes-rva-agro.pdf" download="Catalogo-Flutuantes-RVA-Agro.pdf">Baixar catálogo (PDF) <svg class="ico down"><use href="#i-down"/></svg></a>
+        <div class="catalogue-text">
+          <span class="eyebrow left">Catálogo completo</span>
+          <h3>Quer consultar a linha completa?</h3>
+          <p>Acesse códigos, configurações e capacidades de todos os modelos no catálogo de produtos RVA Agro.</p>
+          <ul class="cat-stats">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-layers"/></svg><b>6</b> linhas</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><b>45</b> modelos</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-pdf"/></svg><b>PDF</b> 2,9 MB</li>
+          </ul>
+        </div>
+        <div class="cat-actions">
+          <a class="btn" href="assets/catalogo-flutuantes-rva-agro.pdf" download="Catalogo-Flutuantes-RVA-Agro.pdf">Baixar catálogo <svg class="ico down"><use href="#i-down"/></svg></a>
+          <small>Atualizado em 25/08/2025</small>
+        </div>
       </div>
     </div>
   </section>
